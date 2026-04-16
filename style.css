@@ -1,0 +1,188 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    font-family: 'Cairo', sans-serif;
+}
+
+:root {
+    --crimson: #9b1d2c;
+    --crimson-dark: #7a1623;
+    --crimson-light: #c41e3a;
+}
+
+/* Custom Colors */
+.bg-crimson { background-color: var(--crimson); }
+.text-crimson { color: var(--crimson); }
+.border-crimson { border-color: var(--crimson); }
+.hover\:bg-crimson:hover { background-color: var(--crimson); }
+
+/* Hero Section */
+.hero-section {
+    background-image: url("https://images.unsplash.com/photo-1615461066841-6116e61058f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" );
+    position: relative;
+}
+
+.hero-overlay {
+    background: linear-gradient(135deg, rgba(155, 29, 44, 0.507), rgba(107, 17, 203, 0.425));
+    backdrop-filter: blur(3px);
+}
+
+/* Typing Animation */
+.typing-container {
+    min-height: 120px;
+}
+
+#typedText {
+    display: inline-block;
+    font-weight: bold;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: white; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Card Animations */
+.card {
+    animation: fadeInUp 0.6s ease-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-slideIn {
+    animation: slideIn 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Quran Section */
+.quran-section {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.verse-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.verse-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.ayah-arabic {
+    font-family: 'Amiri', 'Traditional Arabic', 'Cairo', serif;
+    line-height: 1.8;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Floating Buttons */
+.floating-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-btn:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--crimson);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--crimson-dark);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .ayah-arabic {
+        font-size: 1.5rem;
+    }
+    
+    .typing-container {
+        min-height: 80px;
+    }
+    
+    #typedText {
+        font-size: 2rem;
+    }
+}
+
+/* Blood Type Badges */
+.blood-badge {
+    transition: all 0.3s ease;
+}
+
+.blood-badge:hover {
+    transform: scale(1.05);
+}
+
+/* Phone Reveal Animation */
+.phone-reveal {
+    animation: revealPhone 0.5s ease-out;
+}
+
+@keyframes revealPhone {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
