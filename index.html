@@ -55,15 +55,25 @@
 
       <!-- Search Section -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <h2
+            class="text-2xl font-bold text-gray-800 border-r-4 border-crimson pr-3"
+          >
+            <i class="fas fa-search ml-2"></i>ابحث عن متبرع
+          </h2>
+          <button
+            id="addDonorBtn"
+            class="bg-crimson hover:bg-crimson/90 text-white px-6 py-2.5 rounded-xl transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl"
+            data-aos="fade-left"
+          >
+            <i class="fas fa-plus"></i>
+            <span>إضافة متبرع جديد</span>
+          </button>
+        </div>
         <div
           class="bg-white rounded-2xl shadow-xl p-6 mb-10 transform transition-all duration-500 hover:shadow-2xl"
           data-aos="fade-up"
         >
-          <h2
-            class="text-2xl font-bold text-gray-800 border-r-4 border-crimson pr-3 mb-6"
-          >
-            <i class="fas fa-search ml-2"></i>ابحث عن متبرع
-          </h2>
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div class="animate-slideIn" style="animation-delay: 0.1s">
               <label class="block text-sm font-semibold text-gray-600 mb-1">
@@ -151,7 +161,196 @@
         </div>
       </div>
 
-      <!-- Footer -->
+      <!-- Add Donor Modal -->
+    <div
+      id="addDonorModal"
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto animate-slideUp">
+        <div class="p-6 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
+          <h3 id="modalTitle" class="text-xl font-bold text-gray-800 flex items-center gap-2">
+            <i class="fas fa-user-plus text-crimson"></i>
+            إضافة متبرع جديد
+          </h3>
+          <button
+            id="closeModalBtn"
+            class="text-gray-400 hover:text-gray-600 text-2xl leading-none p-1"
+            aria-label="إغلاق النموذج"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="addDonorForm" class="p-6 space-y-4">
+          <div>
+            <label for="donorName" class="block text-sm font-semibold text-gray-600 mb-1">
+              <i class="fas fa-user ml-1"></i>الاسم <span class="text-crimson">*</span>
+            </label>
+            <input
+              type="text"
+              id="donorName"
+              name="name"
+              required
+              placeholder="أدخل اسم المتبرع"
+              class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-crimson focus:border-transparent outline-none transition"
+            />
+          </div>
+          <div>
+            <label for="donorArea" class="block text-sm font-semibold text-gray-600 mb-1">
+              <i class="fas fa-map-marker-alt ml-1"></i>المنطقة
+            </label>
+            <div class="flex gap-2">
+              <select
+                id="donorArea"
+                name="area"
+                class="flex-1 border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-crimson outline-none"
+              >
+                <option value="">اختر المنطقة أو اكتبها</option>
+              </select>
+              <button
+                type="button"
+                id="addAreaBtn"
+                class="bg-crimson hover:bg-crimson/90 text-white px-4 py-2.5 rounded-xl transition-all duration-300 flex items-center gap-1 shadow-lg hover:shadow-xl whitespace-nowrap"
+                title="إضافة منطقة جديدة"
+              >
+                <i class="fas fa-plus"></i>
+                <span class="hidden sm:inline">إضافة</span>
+              </button>
+            </div>
+          </div>
+          <div>
+            <label for="donorBloodType" class="block text-sm font-semibold text-gray-600 mb-1">
+              <i class="fas fa-tint ml-1"></i>فصيلة الدم <span class="text-crimson">*</span>
+            </label>
+            <select
+              id="donorBloodType"
+              name="bloodType"
+              required
+              class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-crimson outline-none"
+            >
+              <option value="">اختر فصيلة الدم</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </div>
+          <div>
+            <label for="donorPhone" class="block text-sm font-semibold text-gray-600 mb-1">
+              <i class="fas fa-phone ml-1"></i>رقم الهاتف
+            </label>
+            <input
+              type="tel"
+              id="donorPhone"
+              name="phone"
+              placeholder="مثال: 01012345678"
+              class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-crimson focus:border-transparent outline-none transition"
+            />
+          </div>
+          <div>
+            <label for="donorImage" class="block text-sm font-semibold text-gray-600 mb-1">
+              <i class="fas fa-image ml-1"></i>رابط الصورة (اختياري)
+            </label>
+            <input
+              type="url"
+              id="donorImage"
+              name="image"
+              placeholder="https://example.com/image.png"
+              class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-crimson focus:border-transparent outline-none transition"
+            />
+            <p class="text-xs text-gray-400 mt-1">اتركه فارغاً لاستخدام الصورة الافتراضية</p>
+          </div>
+          <div id="formMessage" class="hidden p-3 rounded-lg text-sm"></div>
+          <div class="flex gap-3 pt-4 border-t border-gray-200">
+            <button
+              type="button"
+              id="cancelModalBtn"
+              class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2.5 rounded-xl transition-all duration-300 font-semibold"
+            >
+              إلغاء
+            </button>
+            <button
+              type="submit"
+              id="submitDonorBtn"
+              class="flex-1 bg-crimson hover:bg-crimson/90 text-white py-2.5 rounded-xl transition-all duration-300 font-semibold flex items-center justify-center gap-2"
+            >
+              <i class="fas fa-save"></i>
+              <span>حفظ المتبرع</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Area Modal -->
+    <div
+      id="addAreaModal"
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="areaModalTitle"
+    >
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-slideUp">
+        <div class="p-6 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
+          <h3 id="areaModalTitle" class="text-xl font-bold text-gray-800 flex items-center gap-2">
+            <i class="fas fa-map-marker-alt text-crimson"></i>
+            إضافة منطقة جديدة
+          </h3>
+          <button
+            id="closeAreaModalBtn"
+            class="text-gray-400 hover:text-gray-600 text-2xl leading-none p-1"
+            aria-label="إغلاق النموذج"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="addAreaForm" class="p-6 space-y-4">
+          <div>
+            <label for="newAreaName" class="block text-sm font-semibold text-gray-600 mb-1">
+              <i class="fas fa-map-marker-alt ml-1"></i>اسم المنطقة <span class="text-crimson">*</span>
+            </label>
+            <input
+              type="text"
+              id="newAreaName"
+              name="areaName"
+              required
+              placeholder="مثال: مسجد النور، عزبة راتب، إلخ"
+              class="w-full border border-gray-300 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-crimson focus:border-transparent outline-none transition"
+              autocomplete="off"
+            />
+          </div>
+          <div id="areaFormMessage" class="hidden p-3 rounded-lg text-sm"></div>
+          <div class="flex gap-3 pt-4 border-t border-gray-200">
+            <button
+              type="button"
+              id="cancelAreaModalBtn"
+              class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2.5 rounded-xl transition-all duration-300 font-semibold"
+            >
+              إلغاء
+            </button>
+            <button
+              type="submit"
+              id="submitAreaBtn"
+              class="flex-1 bg-crimson hover:bg-crimson/90 text-white py-2.5 rounded-xl transition-all duration-300 font-semibold flex items-center justify-center gap-2"
+            >
+              <i class="fas fa-save"></i>
+              <span>حفظ المنطقة</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2"></div>
+
+    <!-- Footer -->
       <footer class="bg-gray-900 text-white py-8">
         <div class="text-center">
           <p class="text-lg mb-2">
@@ -185,6 +384,7 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="donors-data.js"></script>
+    <script src="google-sheets-api.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
